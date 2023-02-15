@@ -1,5 +1,5 @@
 #pragma once
-#include "ILibrary.h"
+#include <string>
 
 static int ID_SUBSCRIBER = 0;
 

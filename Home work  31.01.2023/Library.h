@@ -2,7 +2,7 @@
 #include "ILibrary.h"
 #include <map>
 #include <iterator>
-
+#include <string>
 
 class Library : public ILibrary {
 public:
@@ -12,37 +12,27 @@ public:
 	void pop();
 	void removeBook(int key) override;
 	void registerSubscriber(const Subscriber& sub) override;
-	//void showBooks();
-	int  getID();
-	//friend std::ostream& operator<<(std::ostream& os, const std::map <int, std::string>& _books) {
-	//	os << "\n";
-	//	for (const auto & _idCounterBooks : _books)
-	//	{
-	//		os << "\t{" << _idCounterBooks.first << ", " << _idCounterBooks.second << "}\n";
-	//	}
-	//	
-	//	os << ']';
-	//	return os;
-	//}
-	/*friend std::ostream& operator<<(std::ostream& os, const std::map <int, std::string>::iterator it) {
-		os << it->first << it->second;
+	//friend std::ostream& operator<<(std::ostream& os, const std::map <int, std::string>::iterator& it);
+	//friend std::ostream& operator<<(std::ostream& os, const std::map <int, std::string>& _books);
+	template <typename key, typename value>
+	friend std::ostream& operator<<(std::ostream& os, const std::map<int, Book>& _books)
+	{
+		for (const std::pair<key, value>& t : _books)
+		{
+			os << t.first << " " << t.second << " " << std::endl;
+		}
 		return os;
-	}*/
-	//template <typename key, typename value>
-	//friend std::ostream& operator<<(std::ostream& os, const std::map<int, Book>& _books)
-	//{
-	//	for (const std::pair<key, value>& t : _books)
-	//	{
-	//		os << t.first << " " << t.second << " " << std::endl;
-	//	}
-	//	return os;
-	//}
+	}
+	void showBooks();
+	int  getID();
+	
+
 
 private:
 	int _ID;
 	std::string _name;
 	std::map<int, Book> _books; 
-	std::map<int, Book>::iterator it;
+	std::map<int, Book>::iterator it = _books.begin();
 	int _idCounterBooks;//можно не хранить, а брать из мапы последний элемент
 	std::queue<Subscriber> _subs;
 
