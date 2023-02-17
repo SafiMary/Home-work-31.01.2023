@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-
+#include <iostream>
 
 
 class Book {
@@ -17,6 +17,10 @@ public:
 	void setContent(const std::string& content);
 	void setYearIssue(int yearIssue);
 	void showOneBook();
+	friend std::ostream& operator<<(std::ostream& os,const Book& book) {
+		os << book.getTitle() << " " << book.getAuthor() << std::endl;
+		return os;
+	}
 private:
 	std::string _author;
 	std::string _title;

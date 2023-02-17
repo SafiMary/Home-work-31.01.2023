@@ -9,20 +9,9 @@ public:
 	Library(const std::string& name);
 	void addBook(const Book& book)override;
 	void modifyBook(int key, const std::string& newName) override;
-	void pop();
+	void pop(const Subscriber& _sub);
 	void removeBook(int key) override;
 	void registerSubscriber(const Subscriber& sub) override;
-	//friend std::ostream& operator<<(std::ostream& os, const std::map <int, std::string>::iterator& it);
-	//friend std::ostream& operator<<(std::ostream& os, const std::map <int, std::string>& _books);
-	template <typename key, typename value>
-	friend std::ostream& operator<<(std::ostream& os, const std::map<int, Book>& _books)
-	{
-		for (const std::pair<key, value>& t : _books)
-		{
-			os << t.first << " " << t.second << " " << std::endl;
-		}
-		return os;
-	}
 	void showBooks();
 	int  getID();
 	

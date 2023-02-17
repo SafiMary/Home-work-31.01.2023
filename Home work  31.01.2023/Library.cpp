@@ -23,14 +23,14 @@ void Library::addBook(const Book& book) {//добавить книгу
 void Library::modifyBook(int key, const std::string& newName) {//изменить книгу
 	std::cout << "Изменили название книги\n " << std::endl;
 	const auto it = _books.find(key);
-	std::cout << it->second.setTitle(newName);
+	it->second.setTitle(newName);
 }
 
 void Library::removeBook(int key) {//удалить книгу
 	_books.erase(key);
 	std::cout << "Книга удалена\n " << std::endl;
 }
-void Library::pop() {//поиск и выдача книги. или отказ в случае отсутствия
+void Library::pop(const Subscriber& _sub) {//поиск и выдача книги. или отказ в случае отсутствия
 	Subscriber& sub = _subs.front();
 	std::string subWantedBook = sub.getBookWanted();
 	for (auto it = _books.begin(); it != _books.end(); it++) {
@@ -49,33 +49,11 @@ void Library::showBooks() {// Список книг
 	/*for (const auto& _idCounterBooks : _books) {
 		std::cout << _idCounterBooks << "    " << book.getTitle() << "\n";
 	}*/
-	for (int i = 0; it != _books.end(); it++, i++) {
-		std::cout << it->first << " " << it->second << std::endl;
+	for (const auto &el : _books) {
+		std::cout << el.first << " " << el.second << std::endl;
 	}
 
 }
-//std::ostream& operator<<(std::ostream& os, const std::map <int, std::string>::iterator& it) {
-//	os << it->first;
-//	os << it->second;
-//	return os;
-//}
- /*std::ostream& operator<<(std::ostream& os, const std::map <int, std::string>& _books) {
-os << "\n";
-for (const auto& _idCounterBooks : _books)
-{
-	os << "\t{" << _idCounterBooks.first << ", " << _idCounterBooks.second << "}\n";
-}
-
-os << ']';
-return os;
-	}*/
-//void Library::showBooks() {// Список книг
-//	for (it = _books.begin(); it != _books.end(); it++)
-//	{
-//		std::cout << it->first << " " << it->second << std::endl;
-//	}
-//
-//}
 
 
 int  Library::getID() {

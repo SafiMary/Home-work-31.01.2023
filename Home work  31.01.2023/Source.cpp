@@ -45,6 +45,10 @@ int main() {
 	library.addBook(book2);
 	library.addBook(book3);
 
+	//Добавляем пользователей в библиотеку
+	library.registerSubscriber(subscriber);
+	library.registerSubscriber(subscriber1);
+	library.registerSubscriber(subscriber2);
     //Показать содержимое книги
 	book.showOneBook();
 	
@@ -54,8 +58,8 @@ int main() {
 	//Проверить произошло ли изменение
 	book.showOneBook();
 	book3.showOneBook();
-	//library.removeBook(1);
-	//book.showOneBook();
+	library.removeBook(1);
+	library.pop(subscriber);
 
 
 }
